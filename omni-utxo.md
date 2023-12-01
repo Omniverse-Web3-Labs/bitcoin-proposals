@@ -1,8 +1,8 @@
-
-
-## Summary
+# Omnize-UTXO for Bitcoin Network
 
 We are trying to build an interesting way to improve the ecosystem of the BTC network.
+
+## Summary
 
 Everything of Web3 starts from the decentralized ledger, and now we are considering whether we can build a new kind of decentralized ledger over different consensus spaces. In particular, we define a new global token protocol based on the UTXO transaction model and use the Bitcoin network and other currently stable blockchains as abstract nodes to record the states of the new global decentralized ledger together. As a result, the security of the new kind of token will be guaranteed by both the Bitcoin network and other blockchains like Ethereum, users can keep the integrity of their tokens and more diverse applications will be introduced into the BTC ecosystem as the application businesses can be deployed anywhere but the settlements are recorded on BTC.
 
@@ -91,7 +91,7 @@ There are 3 types of O-TX
 
     ```js
     {
-        name: “TEST-TOKEN”,
+        name: '<name of the token> like: TEST-TOKEN',
         inputs: [
             {
                 txid: 0x00,
@@ -163,7 +163,7 @@ The `Account System` on `Flow` is a typical example.
 
 #### Figure.1 Architecture
 
-
+![image](https://github.com/Omniverse-Web3-Labs/some-writings/assets/83746881/ec4868c0-b657-425a-9bba-a0080b22199c)
 
 With the Omnize-UTXO protocol, everyone can issue global tokens that can be used on multi-chains by leveraging scripts on Bitcoin, smart contracts, or similar mechanisms on other existing blockchains.
 
