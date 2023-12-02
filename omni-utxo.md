@@ -73,6 +73,9 @@ The structure MUST be like this
 }
 ```
 
+The signature MAY be computed like this
+sign(keccak256(CONCAT(BYTES(txid), BYTES(index), BYTES(amount))))
+
 #### O-TX types
 
 There are 3 types of O-TX
@@ -134,7 +137,7 @@ It is short for Omnize-UTXO transaction ID and is generated according to the inp
 It is RECOMMENDED to generate O-TXID as following  
 
 ```js
-keccak256(CONCAT(BYTES(inputs[0].index, BYTES(inputs[0].amount),...))
+keccak256(CONCAT(BYTES(inputs[0].txid, inputs[0].index, BYTES(inputs[0].amount),...))
 ```
 
 #### Constraint
