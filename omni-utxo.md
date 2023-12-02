@@ -1,10 +1,10 @@
 # OMNI-UTXO for Bitcoin Network
 
-We are trying to build an interesting way to improve the ecosystem of the BTC network.
+We are trying to build an interesting way called `OMNI-UTXO protocol` to improve the ecosystem of the BTC network.
 
 ## Summary
 
-Decentralized ledger techology(DLT) is the foundation of Web3, and now we are considering whether we can build a new kind of decentralized ledger over different consensus spaces of chains. In particular, we define a new global token protocol based on the UTXO transaction model and use the Bitcoin network and other currently stable blockchains as abstract nodes to record the states of the new global decentralized ledger together. As a result, the security of the new kind of token will be guaranteed by both the Bitcoin network and other blockchains like Ethereum, users can keep the integrity of their tokens and more diverse applications will be introduced into the BTC ecosystem as the application businesses can be deployed anywhere but the settlements are recorded on BTC.
+Decentralized ledger techology(DLT) is the foundation of Web3, and now we are considering whether we can build a new kind of decentralized ledger over different consensus spaces of chains. In particular, we define a new global token protocol based on the UTXO transaction model and use the Bitcoin network and other currently stable blockchains as abstract nodes to record the states of the new global decentralized ledger together. As a result, the security of the new kind of token will be guaranteed by both the Bitcoin network and other blockchains like Ethereum, so that users can keep the integrity of their tokens and more diverse applications will be introduced into the BTC ecosystem as the application businesses can be deployed anywhere but the settlements are recorded on BTC.
 
 Simply, the legitimacy of all on-chain states and operations can be equivalently verified and recorded simultaneously over different consensus spaces, regardless of where they were initiated. That’s why we call the new token protocol OMNI-UTXO.
 
