@@ -11,7 +11,7 @@ Simply, the legitimacy of all on-chain states and operations can be equivalently
 ## Motivation
 
 We think the first thing to extend the BTC ecosystem is for assets issued on the BTC network to be able to circulate throughout the web3 world. But current methods have some problems.  
-- The current paradigm(like token bridges) of using the same kind of token makes assets fragment.  
+- The current paradigm(like token bridges) of using the same kind of token on multi-chains makes assets fragment.  
 - If BTC was transferred to another chain through the current token bridge, and once the target chain breaks down, it will be very hard to correctly get the BTCs back to the users although locked in the bridge account.
 
 The core of the Omnize-UTXO protocol is recording synchronized instead of bridging, even if all the other chains break down, as long as the Bitcoin network is still running, the user’s assets will not be lost.
