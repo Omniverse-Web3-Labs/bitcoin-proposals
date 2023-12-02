@@ -29,7 +29,7 @@ O-UTXO is short for the Omnize-UTXO. The UTXO transaction model is used for Omni
 
 #### Data structure of O-UTXO
 
-The structure SHOULD be like this
+The structure is like this
 ```js
 {
     account: '<Public key of the owner of the O-UTXO>'
@@ -49,7 +49,7 @@ It is short for the transaction of Omnize-UTXO.
 
 #### Data structure of O-TX
 
-The structure MUST be like this
+The structure is like this
 
 ```js
 {
@@ -134,7 +134,7 @@ There are 3 types of O-TX
 #### O-TXID
 
 It is short for Omnize-UTXO transaction ID and is generated according to the input O-UTXO indexes.  
-It is RECOMMENDED to generate O-TXID as following  
+O-TXID MAY be generated as following  
 
 ```js
 keccak256(CONCAT(BYTES(inputs[0].txid, inputs[0].index, BYTES(inputs[0].amount),...))
