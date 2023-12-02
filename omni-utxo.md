@@ -106,7 +106,8 @@ There are 3 types of O-TX
     }
     ```
 
-    - The `txid` and the `index` are both fixed to `0x00` in `Mint` operation
+    - The `txid` is fixed to `0x00` in `Mint` operation
+    - The `index` starts at 0, and increase by 1 after every minting
 
 - Spend: Spend O-UTXOs
 
