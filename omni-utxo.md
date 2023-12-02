@@ -1,4 +1,4 @@
-# Omni-UTXO for Bitcoin Network
+# OMNI-UTXO for Bitcoin Network
 
 We are trying to build an interesting way to improve the ecosystem of the BTC network.
 
@@ -6,7 +6,7 @@ We are trying to build an interesting way to improve the ecosystem of the BTC ne
 
 Decentralized ledger techology(DLT) is the foundation of Web3, and now we are considering whether we can build a new kind of decentralized ledger over different consensus spaces of chains. In particular, we define a new global token protocol based on the UTXO transaction model and use the Bitcoin network and other currently stable blockchains as abstract nodes to record the states of the new global decentralized ledger together. As a result, the security of the new kind of token will be guaranteed by both the Bitcoin network and other blockchains like Ethereum, users can keep the integrity of their tokens and more diverse applications will be introduced into the BTC ecosystem as the application businesses can be deployed anywhere but the settlements are recorded on BTC.
 
-Simply, the legitimacy of all on-chain states and operations can be equivalently verified and recorded simultaneously over different consensus spaces, regardless of where they were initiated. That’s why we call the new token protocol Omni-UTXO.
+Simply, the legitimacy of all on-chain states and operations can be equivalently verified and recorded simultaneously over different consensus spaces, regardless of where they were initiated. That’s why we call the new token protocol OMNI-UTXO.
 
 ## Motivation
 
@@ -14,7 +14,7 @@ We think the first thing to extend the BTC ecosystem is for assets issued on the
 - The current paradigm(like token bridges) of using a token by wrapped it on multi-chains seperately lead to fragmentation, and may have some centralization and security issues related to the bridge.  
 - If BTC was transferred to another chain through the current token bridge, and once the target chain breaks down, it will be very hard to correctly get the BTCs back to the users although locked in the bridge account.
 
-The core of the Omni-UTXO protocol is recording synchronized instead of bridging, even if all the other chains break down, as long as the Bitcoin network is still running, the user’s assets will not be lost.
+The core of the OMNI-UTXO protocol is recording synchronized instead of bridging, even if all the other chains break down, as long as the Bitcoin network is still running, the user’s assets will not be lost.
 
 - The fragment problem will be solved.
 - The security of users' multi-chain assets can be greatly enhanced.
@@ -25,7 +25,7 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 
 ### O-UTXO
 
-O-UTXO is short for the Omni-UTXO. The UTXO transaction model is used for Omni-UTXO, namely all tokens are stored in the unspent transaction outputs. To distinguish the UTXO of Omni-UTXO from the UTXO of BTC, we call the former the `O-UTXO`. Anyone who has the private key to the O-UTXO can spend the O-UTXO.
+O-UTXO is short for the OMNI-UTXO. The UTXO transaction model is used for OMNI-UTXO, namely all tokens are stored in the unspent transaction outputs. To distinguish the UTXO of OMNI-UTXO from the UTXO of BTC, we call the former the `O-UTXO`. Anyone who has the private key to the O-UTXO can spend the O-UTXO.
 
 #### Data structure of O-UTXO
 
@@ -45,7 +45,7 @@ An O-UTXO is indexed by the O-TXID: O-INDEX, in which O-TXID is the id of the O-
 
 ### O-TX
 
-It is short for the transaction of Omni-UTXO.
+It is short for the transaction of OMNI-UTXO.
 
 #### Data structure of O-TX
 
@@ -53,7 +53,7 @@ The structure is like this
 
 ```js
 {
-    deploy:  // Only used when deploying an Omni-UTXO token
+    deploy:  // Only used when deploying an OMNI-UTXO token
     {
         name: '<name of the token>',
         owner: '<account of the owner>'
@@ -79,7 +79,7 @@ sign(keccak256(CONCAT(BYTES(txid), BYTES(index), BYTES(amount))))
 #### O-TX types
 
 There are 3 types of O-TX
-- Deploy: Deploy a new Omni-UTXO token
+- Deploy: Deploy a new OMNI-UTXO token
 
     ```js
     {
@@ -133,7 +133,7 @@ There are 3 types of O-TX
 
 #### O-TXID
 
-It is short for Omni-UTXO transaction ID and is generated according to the input O-UTXO indexes.  
+It is short for OMNI-UTXO transaction ID and is generated according to the input O-UTXO indexes.  
 O-TXID MAY be generated as following  
 
 ```js
@@ -146,11 +146,11 @@ The balance amount of inputs MUST be equal to the balance amount of outputs
 
 ### Execution Layer
 
-The main purpose of the Execution Layer is to guarantee all chains have executed the same transactions and have the same state. In addition, the Execution Layer can batch and execute Omni-UTXO transactions(o-transactions for short) in a period, generate zk-proof, and commit it together with state changes to chains, to improve the performance of Omni-UTXO.
+The main purpose of the Execution Layer is to guarantee all chains have executed the same transactions and have the same state. In addition, the Execution Layer can batch and execute OMNI-UTXO transactions(o-transactions for short) in a period, generate zk-proof, and commit it together with state changes to chains, to improve the performance of OMNI-UTXO.
 
 ### Interpreter
 
-An interpreter SHOULD be introduced to execute O-TXs, due to the Bitcoin network not being able to deal with O-TXs. The transaction data that the interpreter executes are all recorded on the Bitcoin network, so anyone can restore the state of Omni-UTXO tokens, to check if the interpreter functions well.
+An interpreter SHOULD be introduced to execute O-TXs, due to the Bitcoin network not being able to deal with O-TXs. The transaction data that the interpreter executes are all recorded on the Bitcoin network, so anyone can restore the state of OMNI-UTXO tokens, to check if the interpreter functions well.
 
 ### Account Mapping Mechanism for Different Environments
 
@@ -173,7 +173,7 @@ With the Omni-UTXO protocol, everyone can issue global tokens that can be used o
 
 As shown in [Figure.1](#architecture).  
 
-- The Omni-UTXO smart contracts and the scripts of Bitcoin are referred to as **Abstract Nodes**. The states recorded by the Abstract Nodes that are stored on different blockchains respectively could be considered as copies of the global state, and they are ultimately consistent.  
+- The OMNI-UTXO smart contracts and the scripts of Bitcoin are referred to as **Abstract Nodes**. The states recorded by the Abstract Nodes that are stored on different blockchains respectively could be considered as copies of the global state, and they are ultimately consistent.  
 - **Execution-Layer** is an off-chain execution program responsible for receiving Omni-UTXO transactions, executing transactions, and generating proofs to chains.
 
 ### Principle
@@ -187,7 +187,7 @@ As shown in [Figure.1](#architecture).
 #### Workflow
 
 - Suppose there is
-    - An Omni-UTXO token O-TOKEN
+    - An OMNI-UTXO token O-TOKEN
     - A common user `A` has public key pk-A.
     - A common user `B` has public key pk-B.
     - An O-UTXO `A1` with O-TXID `txid`, O-INDEX 0
