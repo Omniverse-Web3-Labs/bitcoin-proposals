@@ -23,26 +23,6 @@ The core of the OMNI-UTXO protocol is recording synchronized instead of bridging
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 and RFC 8174.
 
-### O-UTXO
-
-O-UTXO is short for the OMNI-UTXO. The UTXO transaction model is used for OMNI-UTXO, namely all tokens are stored in the unspent transaction outputs. To distinguish the UTXO of OMNI-UTXO from the UTXO of BTC, we call the former the `O-UTXO`. Anyone who has the private key to the O-UTXO can spend the O-UTXO.
-
-#### Data structure of O-UTXO
-
-The structure is like this
-```js
-{
-    account: '<Public key of the owner of the O-UTXO>'
-    amount: '<Token number in the O-UTXO>'
-}
-```
-
-- The account is RECOMMENDED to be the compressed public key based on `secp256k1`
-
-#### Index of O-UTXO
-
-An O-UTXO is indexed by the O-TXID: O-INDEX, in which O-TXID is the id of the O-TX where the O-UTXO is generated, and the O-INDEX is the index of the O-UTXO in the transaction.
-
 ### O-TX
 
 It is short for the transaction of OMNI-UTXO.
@@ -56,25 +36,27 @@ The structure is like this
     deploy:  // Only used when deploying an OMNI-UTXO token
     {
         name: '<name of the token>',
-        owner: '<account of the owner>'
+        owner: '<address of the owner>'
     },
     name: "<name of the token>", // Can be absent when deploying
-    inputs: [
-        { // Can be absent when deploying
-	        txid: '<O-TXID>',
-            index: '<index of O-UTXO>',
-            amount: '<amount of the O-UTXO>',
+    inputs: [ // Can be absent when deploying
+        {
+	        txid: '<txid of the transaction from which the input is generated>',
+            index: '<index of the input in the transaction>',
+            amount: '<amount of the input>',
             signature: '<signature>'
         }
     ],
     outputs: [ // Can be absent when deploying
-        <an O-UTXO>,
+        address: '<owner address of the output>',
+	amount: '<amount of the output>'
     ]  
 }
 ```
 
-The signature MAY be computed like this
-sign(keccak256(CONCAT(BYTES(txid), BYTES(index), BYTES(amount))))
+- The address is RECOMMENDED to be the compressed public key based on `secp256k1`
+- The signature MAY be computed like this
+    sign(keccak256(CONCAT(BYTES(txid), BYTES(index), BYTES(amount))))
 
 #### O-TX types
 
@@ -85,12 +67,12 @@ There are 3 types of O-TX
     {
         deploy: {
             name: '<name of the token>',
-            owner: '<OWNER PK>'
+            owner: '<address of the owner>'
         }
     }
     ```
 
-- Mint: Mint new O-UTXOs
+- Mint: Mint new tokens
 
     ```js
     {
@@ -104,7 +86,8 @@ There are 3 types of O-TX
             }
         ],
         outputs: [
-            <O-UTXO>,
+            address: '<owner address of the output>',
+	    amount: '<amount of the output>'
         ]
     }
     ```
@@ -119,26 +102,37 @@ There are 3 types of O-TX
         name: '<name of the token>',
         inputs: [
             {
-	            txid: '<O-TXID>',
-                index: '<index of O-UTXO>',
-                amount: '<amount of the O-UTXO>',
+	            txid: '<txid of the transaction from which the input is generated>',
+                index: '<index of the input in the transaction>',
+                amount: '<amount of the input>',
                 signature: '<signature>'
             }
         ],
         outputs: [
-            <O-UTXO>,
+            address: '<owner address of the output>',
+	    amount: '<amount of the output>'
         ]
     }
     ```
 
 #### O-TXID
 
-It is short for OMNI-UTXO transaction ID and is generated according to the input O-UTXO indexes.  
+It is short for OMNI-UTXO transaction ID and is generated according to the inputs of O-TX.  
 O-TXID MAY be generated as following  
 
 ```js
 keccak256(CONCAT(BYTES(inputs[0].txid, inputs[0].index, BYTES(inputs[0].amount),...))
 ```
+
+### O-UTXO
+
+O-UTXO is short for the UTXO of OMNI-UTXO.
+
+The UTXO transaction model is used for OMNI-UTXO, namely all tokens are stored in the *unspent O-TX outputs*. To distinguish the UTXO of OMNI-UTXO from the UTXO of BTC, we call the former the `O-UTXO`. Anyone who has the private key to the O-UTXO can spend it.
+
+#### Index of O-UTXO
+
+An O-UTXO is indexed by the O-TXID: O-INDEX, in which O-TXID is the id of the O-TX from which the O-UTXO is generated, and the O-INDEX is the index of the O-UTXO in the transaction.
 
 #### Constraint
 
@@ -193,7 +187,7 @@ As shown in [Figure.1](#architecture).
     - An O-UTXO `A1` with O-TXID `txid`, O-INDEX 0
         ```js
         {
-            account: 'pk-A',
+            address: 'pk-A',
             amount: 1000
         }
         ```
@@ -205,16 +199,17 @@ As shown in [Figure.1](#architecture).
                 {
                     txid: 'txid',
 	                index: 0,
+        	    amount: 1000,
                     signature: 'the signature of A to A1'
                 }
             ]
             outputs: [
                 {
-                    account: 'pk-A',
+                    address: 'pk-A',
                     amount: 500
                 },
                 {
-                    account: 'pk-B'
+                    address: 'pk-B'
                     amount: 500
                 }
             ]
