@@ -240,3 +240,4 @@ More information can be found at [the GitHub of Omni Labs](https://github.com/Om
 - Email: chengjingxx@gmail.com
 - Email: xiyuzheng1984@gmail.com
 - Email: kay20475@hotmail.com
+- Email: hht2015ily@gmail.com
