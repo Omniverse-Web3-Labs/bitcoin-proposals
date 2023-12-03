@@ -234,3 +234,9 @@ As shown in [Figure.1](#architecture).
 ## More Information
 
 More information can be found at [the GitHub of Omni Labs](https://github.com/Omniverse-Web3-Labs).
+
+## Contacts
+
+- Email: chengjingxx@gmail.com
+- Email: xiyuzheng1984@gmail.com
+- Email: kay20475@hotmail.com
