@@ -48,8 +48,10 @@ The structure is like this
         }
     ],
     outputs: [ // Can be absent when deploying
-        address: '<owner address of the output>',
-	amount: '<amount of the output>'
+        {
+            address: '<owner address of the output>',
+	        amount: '<amount of the output>'
+        },
     ]  
 }
 ```
@@ -86,8 +88,10 @@ There are 3 types of O-TX
             }
         ],
         outputs: [
-            address: '<owner address of the output>',
-	    amount: '<amount of the output>'
+            {
+                address: '<owner address of the output>',
+	            amount: '<amount of the output>'
+            },
         ]
     }
     ```
@@ -109,8 +113,10 @@ There are 3 types of O-TX
             }
         ],
         outputs: [
-            address: '<owner address of the output>',
-	    amount: '<amount of the output>'
+            {
+                address: '<owner address of the output>',
+	            amount: '<amount of the output>'
+            }
         ]
     }
     ```
