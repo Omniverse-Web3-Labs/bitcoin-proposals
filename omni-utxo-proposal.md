@@ -146,15 +146,6 @@ The main purpose of the Execution Layer is to guarantee all chains have executed
 
 An interpreter SHOULD be introduced to execute O-TXs, due to the Bitcoin network not being able to deal with O-TXs. The transaction data that the interpreter executes are all recorded on the Bitcoin network, so anyone can restore the state of OMNI-UTXO tokens, to check if the interpreter functions well.
 
-### Account Mapping Mechanism for Different Environments
-
-In the simplest implementation, we can just build two mappings to get it. One is like `pk based on sece256k1 => account address in the special environment`, and the other is the reverse mapping.
-
-The `Account System` on `Flow` is a typical example.  
-
-- `Flow` has a built-in mechanism for `account address => pk`. The public key can be bound to an account (a special built-in data structure) and the public key can be obtained from the `account address` directly.  
-- A mapping from `pk` to the `account address` on Flow can be built by creating a mapping `{String: Address}`, in which `String` denotes the data type to express the public key and the `Address` is the data type of the `account address` on Flow.  
-
 ## Rationale
 
 ### Architecture
