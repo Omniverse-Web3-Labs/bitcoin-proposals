@@ -39,12 +39,13 @@ The structure is like this
         owner: '<address of the owner>'
     },
     name: "<name of the token>", // Can be absent when deploying
+    signatures: ['<signature>'],
     inputs: [ // Can be absent when deploying
         {
 	        txid: '<txid of the transaction from which the input is generated>',
             index: '<index of the input in the transaction>',
+            address: '<the omni-address of the owner>',
             amount: '<amount of the input>',
-            signature: '<signature>'
         }
     ],
     outputs: [ // Can be absent when deploying
@@ -74,17 +75,24 @@ There are 3 types of O-TX
     }
     ```
 
+    - After deployed, the `asset_id ` is RECOMMENDED to be created as following:
+
+        ```js
+        keccak256(CONCAT(BYTES(related native transaction hash), BYTES(output index), BYTES(name), BYTES(owner)))
+        ```
+
 - Mint: Mint new tokens
 
     ```js
     {
         name: '<name of the token> like: TEST-TOKEN',
+        asset_id: '<the asset id created after deployed>',
+        signatures: ['<signature>'],
         inputs: [
             {
                 txid: 0x00,
    	            index: 0x00,
                 amount: '<amount to be minted>'
-                signature: '<signature>'
             }
         ],
         outputs: [
@@ -104,12 +112,14 @@ There are 3 types of O-TX
     ```js
     {
         name: '<name of the token>',
+        asset_id: '<the asset id created after deployed>',
+        signatures: ['<signature>'],
         inputs: [
             {
 	            txid: '<txid of the transaction from which the input is generated>',
                 index: '<index of the input in the transaction>',
+                address: '<the omni-address of the owner>',
                 amount: '<amount of the input>',
-                signature: '<signature>'
             }
         ],
         outputs: [
@@ -192,12 +202,14 @@ As shown in [Figure.1](#architecture).
     - `A` signs `A1` and initiates an O-TX `tx-e`
         ```js
         {
+            asset_id: '<the asset id created after deployed>',
+            signatures: ['<signature of pk-A>'],
             inputs: [
                 {
                     txid: 'txid',
 	                index: 0,
-        	    amount: 1000,
-                    signature: 'the signature of A to A1'
+                    address: 'pk-A',
+        	        amount: 1000,
                 }
             ]
             outputs: [
