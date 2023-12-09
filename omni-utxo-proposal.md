@@ -42,7 +42,7 @@ The structure is like this
     signatures: ['<signature>'],
     inputs: [ // Can be absent when deploying
         {
-	        txid: '<txid of the transaction from which the input is generated>',
+            txid: '<txid of the transaction from which the input is generated>',
             index: '<index of the input in the transaction>',
             address: '<the omni-address of the owner>',
             amount: '<amount of the input>',
@@ -51,7 +51,7 @@ The structure is like this
     outputs: [ // Can be absent when deploying
         {
             address: '<owner address of the output>',
-	        amount: '<amount of the output>'
+            amount: '<amount of the output>'
         },
     ]  
 }
@@ -59,7 +59,9 @@ The structure is like this
 
 - The address is RECOMMENDED to be the compressed public key based on `secp256k1`
 - The signature MAY be computed like this
-    sign(keccak256(CONCAT(BYTES(txid), BYTES(index), BYTES(amount))))
+    sign(HASH)
+    - The data used to calculate HASH MUST include the transaction's inputs and outputs, it is RECOMMENDED to implement like this
+    HASH = keccak256(CONCAT(BYTES(inputs), BYTES(outputs)))
 
 #### O-TX types
 
@@ -91,14 +93,14 @@ There are 3 types of O-TX
         inputs: [
             {
                 txid: 0x00,
-   	            index: 0x00,
+                index: 0x00,
                 amount: '<amount to be minted>'
             }
         ],
         outputs: [
             {
                 address: '<owner address of the output>',
-	            amount: '<amount of the output>'
+                amount: '<amount of the output>'
             },
         ]
     }
@@ -116,7 +118,7 @@ There are 3 types of O-TX
         signatures: ['<signature>'],
         inputs: [
             {
-	            txid: '<txid of the transaction from which the input is generated>',
+                txid: '<txid of the transaction from which the input is generated>',
                 index: '<index of the input in the transaction>',
                 address: '<the omni-address of the owner>',
                 amount: '<amount of the input>',
@@ -125,7 +127,7 @@ There are 3 types of O-TX
         outputs: [
             {
                 address: '<owner address of the output>',
-	            amount: '<amount of the output>'
+                amount: '<amount of the output>'
             }
         ]
     }
@@ -207,9 +209,9 @@ As shown in [Figure.1](#architecture).
             inputs: [
                 {
                     txid: 'txid',
-	                index: 0,
+                    index: 0,
                     address: 'pk-A',
-        	        amount: 1000,
+                    amount: 1000,
                 }
             ]
             outputs: [
@@ -218,7 +220,7 @@ As shown in [Figure.1](#architecture).
                     amount: 500
                 },
                 {
-                    address: 'pk-B'
+                    address: 'pk-B',
                     amount: 500
                 }
             ]
