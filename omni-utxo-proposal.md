@@ -36,7 +36,7 @@ The structure is like this
     deploy:  // Only used when deploying an OMNI-UTXO token
     {
         name: '<name of the token>',
-        owner: '<address of the owner>'
+        deployer: '<address of the deployer>'
     },
     name: "<name of the token>", // Can be absent when deploying
     signatures: ['<signature>'],
@@ -72,7 +72,7 @@ There are 3 types of O-TX
     {
         deploy: {
             name: '<name of the token>',
-            owner: '<address of the owner>'
+            deployer: '<address of the deployer>'
         }
     }
     ```
