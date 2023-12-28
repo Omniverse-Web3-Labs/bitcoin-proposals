@@ -72,7 +72,8 @@ There are 3 types of O-TX
     {
         deploy: {
             name: '<name of the token>',
-            deployer: '<address of the deployer>'
+            deployer: '<address of the deployer>',
+            salt: '<a random number set by the deployer>'
         }
     }
     ```
@@ -80,14 +81,14 @@ There are 3 types of O-TX
     - After deployed, the `asset_id ` is RECOMMENDED to be created as following:
 
         ```js
-        keccak256(CONCAT(BYTES(related native transaction hash), BYTES(output index), BYTES(name), BYTES(owner)))
+        keccak256(CONCAT(BYTES(name), BYTES(owner), BYTES(salt)))
         ```
+    Tokens with the same `asset_id` MUST be recognized as the same token.
 
 - Mint: Mint new tokens
 
     ```js
     {
-        name: '<name of the token> like: TEST-TOKEN',
         asset_id: '<the asset id created after deployed>',
         signatures: ['<signature>'],
         inputs: [
@@ -113,7 +114,6 @@ There are 3 types of O-TX
 
     ```js
     {
-        name: '<name of the token>',
         asset_id: '<the asset id created after deployed>',
         signatures: ['<signature>'],
         inputs: [
