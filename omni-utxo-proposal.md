@@ -90,13 +90,6 @@ There are 3 types of O-TX
         name: '<name of the token> like: TEST-TOKEN',
         asset_id: '<the asset id created after deployed>',
         signatures: ['<signature>'],
-        inputs: [
-            {
-                txid: 0x00,
-                index: 0x00,
-                amount: '<amount to be minted>'
-            }
-        ],
         outputs: [
             {
                 address: '<owner address of the output>',
